@@ -1,5 +1,4 @@
-# UrbanVibe - Premium Clothing
-Store
+# UrbanVibe - Premium Clothing Store
 
 UrbanVibe is a modern E-commerce platform dedicated to high-quality footwear. Built with Django, it features a sleek, responsive design and robust backend functionality.
 
