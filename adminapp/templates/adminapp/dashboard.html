@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 1000px; margin: 2rem auto;">
+    <h1 style="text-align: center; margin-bottom: 2rem;">Admin Dashboard</h1>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+        <a href="{% url 'view_users' %}" class="card"
+            style="padding: 2rem; text-align: center; text-decoration: none; color: inherit;">
+            <i class="fas fa-users" style="font-size: 3rem; color: #3498db; margin-bottom: 1rem;"></i>
+            <h3>View Users</h3>
+        </a>
+        <a href="{% url 'add_product' %}" class="card"
+            style="padding: 2rem; text-align: center; text-decoration: none; color: inherit;">
+            <i class="fas fa-plus-circle" style="font-size: 3rem; color: #2ecc71; margin-bottom: 1rem;"></i>
+            <h3>Add Product</h3>
+        </a>
+        <a href="{% url 'view_products' %}" class="card"
+            style="padding: 2rem; text-align: center; text-decoration: none; color: inherit;">
+            <i class="fas fa-tshirt" style="font-size: 3rem; color: #e74c3c; margin-bottom: 1rem;"></i>
+            <h3>View Products</h3>
+        </a>
+        <a href="{% url 'view_orders' %}" class="card"
+            style="padding: 2rem; text-align: center; text-decoration: none; color: inherit;">
+            <i class="fas fa-shopping-cart" style="font-size: 3rem; color: #f1c40f; margin-bottom: 1rem;"></i>
+            <h3>View Orders</h3>
+        </a>
+        <a href="{% url 'sales_report' %}" class="card"
+            style="padding: 2rem; text-align: center; text-decoration: none; color: inherit;">
+            <i class="fas fa-chart-line" style="font-size: 3rem; color: #9b59b6; margin-bottom: 1rem;"></i>
+            <h3>Sales Report</h3>
+        </a>
+    </div>
+</div>
+{% endblock %}

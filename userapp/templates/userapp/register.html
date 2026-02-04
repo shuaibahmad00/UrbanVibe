@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Register - ShoeStore{% endblock %}
+
+{% block content %}
+<section style="padding: 80px 0; background: var(--light); min-height: 80vh; display: flex; align-items: center;">
+    <div class="container" style="max-width: 500px;">
+        <div
+            style="background: var(--white); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <h1 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">Create Account</h1>
+
+            {% if messages %}
+            {% for message in messages %}
+            <div
+                style="padding: 15px; margin-bottom: 20px; border-radius: 8px; background: {% if message.tags == 'error' %}#fee2e2{% else %}#dcfce7{% endif %}; color: {% if message.tags == 'error' %}#ef4444{% else %}#22c55e{% endif %};">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Full Name</label>
+                    <input type="text" name="name" required
+                        style="width: 100%; padding: 12px; border: 1px solid var(--gray); border-radius: 8px; outline: none;">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email Address</label>
+                    <input type="email" name="email" required
+                        style="width: 100%; padding: 12px; border: 1px solid var(--gray); border-radius: 8px; outline: none;">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Phone Number</label>
+                    <input type="tel" name="phone" required
+                        style="width: 100%; padding: 12px; border: 1px solid var(--gray); border-radius: 8px; outline: none;">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Password</label>
+                    <input type="password" name="password" required
+                        style="width: 100%; padding: 12px; border: 1px solid var(--gray); border-radius: 8px; outline: none;">
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Delivery Address</label>
+                    <textarea name="address" required rows="3"
+                        style="width: 100%; padding: 12px; border: 1px solid var(--gray); border-radius: 8px; outline: none; resize: vertical;"></textarea>
+                </div>
+
+                <div style="margin-bottom: 30px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Pincode</label>
+                    <input type="number" name="pincode" required
+                        style="width: 100%; padding: 12px; border: 1px solid var(--gray); border-radius: 8px; outline: none;">
+                </div>
+
+                <button type="submit" class="btn btn-primary"
+                    style="width: 100%; padding: 12px; font-size: 1.1rem;">Register</button>
+            </form>
+
+            <p style="text-align: center; margin-top: 20px; color: var(--secondary);">
+                Already have an account? <a href="{% url 'login' %}"
+                    style="color: var(--primary); font-weight: 600;">Login here</a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

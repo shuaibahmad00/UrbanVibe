@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 1000px; margin: 2rem auto;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h1>Registered Users</h1>
+        <a href="{% url 'admin_dashboard' %}" class="btn" style="background-color: #7f8c8d;">Back to Dashboard</a>
+    </div>
+
+    <div class="card" style="padding: 1rem;">
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="padding: 1rem; text-align: left;">ID</th>
+                    <th style="padding: 1rem; text-align: left;">Username</th>
+                    <th style="padding: 1rem; text-align: left;">Email</th>
+                    <th style="padding: 1rem; text-align: left;">Date Joined</th>
+                    <th style="padding: 1rem; text-align: left;">Is Admin</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 1rem;">{{ user.id }}</td>
+                    <td style="padding: 1rem;">{{ user.username }}</td>
+                    <td style="padding: 1rem;">{{ user.email }}</td>
+                    <td style="padding: 1rem;">{{ user.date_joined|date:"M d, Y" }}</td>
+                    <td style="padding: 1rem;">
+                        {% if user.is_superuser %}
+                        <span style="color: green; font-weight: bold;">Yes</span>
+                        {% else %}
+                        No
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" style="padding: 1rem; text-align: center;">No users found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

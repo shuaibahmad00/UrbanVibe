@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 2rem auto;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h1>Sales Report</h1>
+        <a href="{% url 'admin_dashboard' %}" class="btn" style="background-color: #7f8c8d;">Back to Dashboard</a>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div class="card" style="padding: 2rem; text-align: center;">
+            <h3 style="color: #7f8c8d; margin-bottom: 1rem;">Total Sales Amount</h3>
+            <p style="font-size: 2.5rem; font-weight: bold; color: #2ecc71;">${{ total_sales|floatform:2 }}</p>
+        </div>
+        <div class="card" style="padding: 2rem; text-align: center;">
+            <h3 style="color: #7f8c8d; margin-bottom: 1rem;">Total Orders Completed</h3>
+            <p style="font-size: 2.5rem; font-weight: bold; color: #3498db;">{{ count }}</p>
+        </div>
+    </div>
+
+    <div style="margin-top: 2rem; text-align: center; color: #7f8c8d;">
+        <p>This report includes all orders with status 'Delivered'.</p>
+    </div>
+</div>
+{% endblock %}

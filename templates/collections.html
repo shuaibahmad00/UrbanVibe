@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 style="margin-bottom: 2rem;">Our Collections</h2>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem;">
+    {% for product in products %}
+    <div class="card">
+        {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}"
+            style="width: 100%; height: 250px; object-fit: cover;">
+        {% else %}
+        <div
+            style="width: 100%; height: 250px; background-color: #eee; display: flex; align-items: center; justify-content: center;">
+            No Image
+        </div>
+        {% endif %}
+        <div style="padding: 1rem;">
+            <h3 style="margin: 0 0 0.5rem 0;">{{ product.name }}</h3>
+            <p style="color: #e74c3c; font-weight: bold; font-size: 1.2rem;">${{ product.price }}</p>
+            <p style="color: #666; font-size: 0.9rem;">{{ product.category }}</p>
+            <a href="#" class="btn"
+                style="width: 100%; text-align: center; margin-top: 1rem; box-sizing: border-box;">View Details</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>No products available at the moment.</p>
+    {% endfor %}
+</div>
+{% endblock %}

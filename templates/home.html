@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="text-align: center; padding: 4rem 0;">
+    <h1 style="font-size: 3rem; margin-bottom: 1rem; color: #2c3e50;">Welcome to UrbanVibe</h1>
+    <p style="font-size: 1.2rem; color: #7f8c8d; margin-bottom: 2rem;">Discover the latest trends in fashion. Quality
+        clothes for everyone.</p>
+    <a href="{% url 'collections' %}" class="btn" style="font-size: 1.2rem; padding: 15px 30px;">Shop Now</a>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
+    {% for collection in collections %}
+    <div class="card" style="padding: 0; overflow: hidden; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="height: 300px; overflow: hidden;">
+            {% if collection.image %}
+            <img src="{{ collection.image.url }}" alt="{{ collection.name }}"
+                style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+            {% else %}
+            <div
+                style="width: 100%; height: 100%; background-color: #ddd; display: flex; align-items: center; justify-content: center;">
+                No Image</div>
+            {% endif %}
+        </div>
+        <div style="padding: 1.5rem; text-align: center;">
+            <h3 style="margin-bottom: 0.5rem; color: #333;">{{ collection.name }} Collection</h3>
+            <p style="color: #666; font-size: 0.9rem;">{{ collection.description }}</p>
+            <a href="{% url 'collections' %}?category={{ collection.name }}" class="btn"
+                style="margin-top: 1rem; display: inline-block; padding: 8px 20px; font-size: 0.9rem;">Explore</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>No collections found.</p>
+    {% endfor %}
+</div>
+{% endblock %}
+

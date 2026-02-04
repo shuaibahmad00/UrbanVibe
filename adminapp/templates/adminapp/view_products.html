@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 1000px; margin: 2rem auto;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h1>All Products</h1>
+        <a href="{% url 'admin_dashboard' %}" class="btn" style="background-color: #7f8c8d;">Back to Dashboard</a>
+    </div>
+
+    <div class="card" style="padding: 1rem;">
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="padding: 1rem; text-align: left;">Image</th>
+                    <th style="padding: 1rem; text-align: left;">Name</th>
+                    <th style="padding: 1rem; text-align: left;">Category</th>
+                    <th style="padding: 1rem; text-align: left;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 1rem;">
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                            style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                        {% else %}
+                        No Image
+                        {% endif %}
+                    </td>
+                    <td style="padding: 1rem;">{{ product.name }}</td>
+                    <td style="padding: 1rem;">{{ product.category }}</td>
+                    <td style="padding: 1rem;">${{ product.price }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" style="padding: 1rem; text-align: center;">No products found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
